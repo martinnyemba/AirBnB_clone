@@ -65,6 +65,8 @@ In our case, we want to be able to manage the objects of our project:
 - All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
 - All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
 
+## Tasks
+
 ## Authors
 <details>
     <summary>Martin Nyemba</summary>
@@ -72,6 +74,15 @@ In our case, we want to be able to manage the objects of our project:
     <li><a href="https://www.github.com/martinnyemba">Github</a></li>
     <li><a href="https://www.twitter.com/NYEMBAMARTIN">Twitter</a></li>
     <li><a href="mailto:martinnyemba@gmail.com">e-mail</a></li>
+    </ul>
+</details>
+
+<details>
+    <summary>Bayo Herbert</summary>
+    <ul>
+    <li><a href="https://www.github.com/Herbertkartel">Github</a></li>
+    <li><a href="https://www.twitter.com/">Twitter</a></li>
+    <li><a href="mailto:herbzkartel2@gmail.com">e-mail</a></li>
     </ul>
 </details>
 
