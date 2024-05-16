@@ -3,40 +3,30 @@
 This module implements a basic command-line interface for the hbnb application.
 """
 
-import sys
+import cmd
 
 
-class Console:
+class HBNBCommand(cmd.Cmd):
+    """Defines the HolbertonBnB command interpreter.
+
+    Attributes:
+        prompt (str): The command prompt.
     """
-    This class represents the command-line interface for the hbnb application.
-    """
+    # A custom prompt: (hbnb)
+    prompt = "(hbnb)"
+    
+    def do_quit(self, arg):
+        """Quit command to exit the program."""
+        return True
 
-    def __init__(self):
+    def do_EOF(self, arg):
+        """EOF signal to exit the program."""
+        print("")
+        return True
+
+    def emptyline(self):
+        """Do nothing upon receiving an empty line."""
         pass
 
-    def help(self):
-        """
-        Display the list of available commands.
-        """
-        print("Documented commands (type help <topic>):")
-        print("=" * 40)
-        print("EOF  help  quit")
-
-    def run(self):
-        """
-        Run the command-line interface.
-        """
-        print("(hbnb)")
-        for line in sys.stdin:
-            command = line.strip()
-            if command == "help":
-                self.help()
-            elif command == "quit":
-                break
-            else:
-                print("Invalid command. Type 'help' for available commands.")
-        print()
-
-
-if __name__ == "__main__":
-    console = Console()
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
