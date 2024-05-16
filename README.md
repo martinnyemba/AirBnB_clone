@@ -6,7 +6,20 @@ This is the README file for the AirBnB clone project. Below you will find detail
 - The AirBnB clone project is the first step towards building a full web application.
 - The goal of this project is to create a command-line interface (CLI) that allows users to manage AirBnB objects. This includes creating new objects, retrieving objects, performing operations on objects, updating object attributes, and destroying objects.
 
-## Command Interpreter
+## Command Interpreteir
+
+The console is a command interpreter to manage objects abstraction between objects and how they are stored.
+
+The console willl perform the following tasks:
+
+In our case, we want to be able to manage the objects of our project:
+
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
+
 Starting the Command Interpreter
 To start the command interpreter, simply run the console.py script.
 ```
