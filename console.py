@@ -28,5 +28,26 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing upon receiving an empty line."""
         pass
 
+    # Update command interpreter (console.py) Task: 7. Console 0.1
+    def do_create(self):
+        """create BaseModel"""
+        pass
+
+    def do_show(self):
+        """show BaseModel"""
+        pass
+
+    def do_destroy(self):
+        """destroy BaseModel"""
+        pass
+
+    def do_all(self):
+        """all BaseModel"""
+        pass
+    def do_update(self):
+        """update BaseModel"""
+        pass
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
