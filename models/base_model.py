@@ -2,6 +2,8 @@
 import models
 from uuid import uuid4
 from datetime import datetime
+from models import storage
+
 
 
 """Module defines BaseModel that defines all common attributes
@@ -36,6 +38,8 @@ class BaseModel():
                     self.__dict__[k] = datetime.strptime(v, time_format)
                 else:
                     self.__dict__[k] = v
+        else:
+            storage.new(self)
     
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
@@ -46,6 +50,7 @@ class BaseModel():
         with the current datetime
         """
         self.updated_at = datetime.today()
+        storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of
