@@ -4,6 +4,7 @@ This module implements a basic command-line interface for the hbnb application.
 """
 
 import cmd
+import re
 from models.base_model import BaseModel
 from models import storage
 
@@ -101,7 +102,54 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self):
         """update BaseModel"""
-        pass
+        if line == "" or line is None:
+            print("** class name missing **")
+            return
+
+        # Regular expression to parse the input line
+        rex = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
+        match = re.search(rex, line)
+        classname = match.group(1)
+        uid = match.group(2)
+        attribute = match.group(3)
+        value = match.group(4)
+        if not match:
+            print("** class name missing **")
+        elif classname not in storage.classes():
+            print("** class doesn't exist **")
+        elif uid is None:
+            print("** instance id missing **")
+        else:
+            key = f"{classname}.{uid}"
+            if key not in storage.all():
+                print("** no instance found **")
+            elif not attribute:
+                print("** attribute name missing **")
+            elif not value:
+                print("** value missing **")
+            else:
+                # Determine the type of the value
+                cast = None
+                if not re.search('^".*"$', value):
+                    if '.' in value:
+                        cast = float
+                    else:
+                        cast = int
+                else:
+                    value = value.replace('"', '')
+                attributes = storage.attributes()[classname]
+                if attribute in attributes:
+                    value = attributes[attribute](value)
+                elif cast:
+                    try:
+                        value = cast(value)
+                    except ValueError:
+                        pass  # If casting fails, keep it as a string
+                
+                # Update the attribute and save the instance
+                instance = storage.all()[key]
+                setattr(instance, attribute, value)
+                instance.save()
 
 
 if __name__ == '__main__':
