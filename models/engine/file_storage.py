@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """This module saves, and reload the base_model"""
 import json
-
+import os
+import datetime
 
 class FileStorage():
     """FileStorage class that serializes an instances
@@ -36,11 +37,11 @@ class FileStorage():
     def reload(self):
         """Deserialize the JSON file __file_path to __objects, if it exists."""
         try:
-            with open(FileStorage.__file_path) as file:
-                obj_dict = json.load(file)
-                for obj in obj_dict.values():
-                    cls_name = obj["__class__"]
-                    del obj["__class__"]
-                    self.new(eval(cls_name)(**obj))
+            with open(FileStorage.__file_path) as f:
+                objdict = json.load(f)
+                for o in objdict.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name)(**o))
         except FileNotFoundError:
             return

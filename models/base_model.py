@@ -1,21 +1,19 @@
 #!/usr/bin/python3
+"""Module defines BaseModel that defines all common attributes
+or methods for other classes"""
 import models
 from uuid import uuid4
 from datetime import datetime
 from models import storage
 
 
-
-"""Module defines BaseModel that defines all common attributes
-or methods for other classes"""
-
 class BaseModel():
     """
     Defines all common attributes/methods for other classes
-    
+
     Attributes:
         id, created_at and updated_at
-    
+
     Methods:
         save() and to_json()
     """
@@ -31,7 +29,6 @@ class BaseModel():
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
-
         if len(kwargs) != 0:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
@@ -40,7 +37,7 @@ class BaseModel():
                     self.__dict__[k] = v
         else:
             storage.new(self)
-    
+
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
         return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
