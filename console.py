@@ -2,15 +2,30 @@
 """
 This module implements a basic command-line interface for the hbnb application.
 """
-
 import cmd
+import models
+import json
 import re
 from models.base_model import BaseModel
-from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+# create a dictionary containing all the classes
+all_class = {"BaseModel": BaseModel,
+             "Amenity": Amenity,
+             "City": City,
+             "Place": Place,
+             "Review": Review,
+             "State": State,
+             "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
-    """Defines the HolbertonBnB command interpreter.
+    """Defines the console/ command interpreter for AirBnB Project.
 
     Attributes:
         prompt (str): The command prompt.
@@ -43,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
             create.save()
             print(create.id) 
 
-    def do_show(self, args):
+    def do_show(self, arg):
         """show BaseModel"""
         if arg == "" or arg is None:
             print("** class name missing **")
@@ -78,27 +93,22 @@ class HBNBCommand(cmd.Cmd):
                     del storage.all()[key]
                     storage.save()
 
-    def do_all(self, line):
+    def do_all(self, arg):
         """Prints all string representations of instances
         filtered by class name if provided."""
-        # Check if the line is not empty after stripping whitespace
-        if line.strip():
-            args = line.split()
-            class_name = args[0]
-            # Check if the class exists in storage
-            if class_name not in storage.classes():
-                print("** class doesn't exist **")
-            else:
-                # Collect and print instances of the specified class
-                filtered_instances = [
-                    str(obj) for obj in storage.all().values()
-                    if type(obj).__name__ == class_name
-                ]
-                print(filtered_instances)
+        words = str.split(arg)
+        new_list = []
+        if (len(words) == 0):
+            for value in models.storage.all().values():
+                new_list.append(str(value))
+        elif (words[0] not in all_class):
+            print("** class doesn't exist **")
+            return (False)
         else:
-            # Collect and print all instances
-            all_instances = [str(obj) for obj in storage.all().values()]
-            print(all_instances)
+            for key in models.storage.all():
+                if key.startswith(words[0]):
+                    new_list.append(str(models.storage.all()[key]))
+        print(new_list)
 
     def do_update(self):
         """update BaseModel"""
