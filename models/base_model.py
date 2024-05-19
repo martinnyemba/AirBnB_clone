@@ -26,8 +26,8 @@ class BaseModel():
             **kwargs (dict): Key/value pairs of attributes.
         """
         self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) != 0:
             for k, v in kwargs.items():
@@ -46,7 +46,7 @@ class BaseModel():
         """Returns updates of the public instance attribute updated_at
         with the current datetime
         """
-        self.updated_at = datetime.today()
+        self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
@@ -58,3 +58,9 @@ class BaseModel():
         my_dict["updated_at"] = self.updated_at.isoformat()
         my_dict["__class__"] = self.__class__.__name__
         return my_dict
+
+    def delete(self):
+        """
+        Method to deletes an instance based on the class name
+        """
+        models.storage.delete(self)
