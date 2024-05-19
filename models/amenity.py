@@ -10,4 +10,6 @@ class Amenity(BaseModel):
     """
     Inherits from BaseModel and defines the Amenity class
     """
-    name = ""
+
+
+name = ""
