@@ -6,6 +6,7 @@ from datetime import datetime
 from uuid import uuid4
 import models
 
+
 class BaseModel():
     """
     Defines all common attributes/methods for other classes
@@ -27,17 +28,20 @@ class BaseModel():
 
         Attributes:
             id (str): A unique identifier for the instance.
-            created_at (datetime): The timestamp when the instance was created.
-            updated_at (datetime): The timestamp when the instance was last updated.
+            created_at (datetime): Timestamp when instance was created.
+            updated_at (datetime): The timestamp when the instance
+            was last updated.
 
         Raises:
-            ValueError: If kwargs contains keys other than "created_at" or "updated_at".
+            ValueError: If kwargs contains keys other than
+            "created_at" or "updated_at".
 
         Returns:
             None
 
         Additional Information:
-            The instance is saved to the storage upon initialization if kwargs is not empty.
+            The instance is saved to the storage upon
+            initialization if kwargs is not empty.
         """
         self.id = str(uuid4())
         self.created_at = datetime.now()
@@ -70,14 +74,16 @@ class BaseModel():
             None
 
         Additional Information:
-            The string representation includes the instance's class name, ID, and a
+            The string representation includes the
+            instance's class name, ID, and a
             dictionary-like representation of its attributes.
         """
         return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
         """
-        Updates the public instance attribute `updated_at` with the current datetime.
+        Updates the public instance attribute `updated_at`
+        with the current datetime.
 
         Args:
             None
@@ -92,14 +98,14 @@ class BaseModel():
         models.storage.save()
 
     def to_dict(self):
-            """Returns a dictionary containing all keys/values of
+        """Returns a dictionary containing all keys/values of
             __dict__ of the instance.
 
             Returns:
                 dict: A dictionary containing all keys/values of the instance.
-            """
-            my_dict = self.__dict__.copy()
-            my_dict["created_at"] = self.created_at.isoformat()
-            my_dict["updated_at"] = self.updated_at.isoformat()
-            my_dict["__class__"] = self.__class__.__name__
-            return my_dict
+        """
+        my_dict = self.__dict__.copy()
+        my_dict["created_at"] = self.created_at.isoformat()
+        my_dict["updated_at"] = self.updated_at.isoformat()
+        my_dict["__class__"] = self.__class__.__name__
+        return my_dict
