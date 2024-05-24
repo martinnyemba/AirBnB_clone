@@ -1,6 +1,8 @@
-# AirBnB Clone - Web Static Project Documentation
+# A0x01. AirBnB Clone - Web Static Project
 
-This project is part of the AirBnB Clone series and focuses on building the front-end using HTML and CSS. The objective is to create static web pages that mimic the layout and styling of the AirBnB website. The project aims to enhance your understanding of HTML, CSS, and front-end web development concepts.
+This project is part of the AirBnB Clone series and focuses on building the front-end using HTML and CSS. The objective is to create static web pages that mimic the layout and styling of the AirBnB website.
+
+The project aims to enhance your understanding of HTML, CSS, and front-end web development concepts.
 
 ## Project Overview
 
@@ -16,7 +18,7 @@ In this stage of the project, the goal is to design and prototype each element o
 - Box properties in CSS
 
 ## Learning Objectives
-By completing this project, you will gain knowledge and skills in the following areas:
+By completing this project, i will will gain knowledge and skills in the following areas:
 - Understanding HTML and CSS fundamentals
 - Creating HTML pages and applying basic styling
 - Manipulating the Document Object Model (DOM)
