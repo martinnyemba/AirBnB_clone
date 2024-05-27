@@ -1,9 +1,5 @@
 /* styles/2-common.css: for global style (i.e. the body style) */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Reset the margin and padding of the body */
 body {
     margin: 0;
     padding: 0;
